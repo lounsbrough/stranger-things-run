@@ -28,6 +28,7 @@ const LightsWallSvg = (props) =>
 
         {lightBulbConfigs.map(lightBulbConfig =>
             <LightBulbSvgPath
+                key={lightBulbConfig.letter}
                 coordinates={lightBulbConfig.pathCoordinates}
                 hexColor={lightBulbConfig.hexColor}
                 on={['r', 'u', 'n'].includes(lightBulbConfig.letter)}
