@@ -31,7 +31,7 @@ const LightsWallSvg = (props) => {
                 <BaseBulbPath
                     coordinates={lightBulbConfig.pathCoordinates}
                     hexColor={lightBulbConfig.hexColor}
-                    on={Math.random() > 0.5}
+                    on={['r', 'u', 'n'].includes(lightBulbConfig.letter)}
                 />
             )}
 
