@@ -10,16 +10,17 @@ const hexToRgb = (hex) => {
     } : null
 };
 
+// eslint-disable-next-line react/prop-types
 const LightBulbSvgPath = ({coordinates, hexColor, on, clickHandler}) => {
     const rgb = hexToRgb(hexColor);
 
     return (
         <path
             d={coordinates}
-            fill={`rgba(${rgb.red}, ${rgb.green}, ${rgb.blue}, ${on ? 1 : 0.3})`}
-            stroke={`rgba(${rgb.red}, ${rgb.green}, ${rgb.blue}, ${on ? 1 : 0.7})`}
+            fill={`rgba(${rgb.red}, ${rgb.green}, ${rgb.blue}, ${on ? 1 : 0.15})`}
+            stroke={`rgba(${rgb.red}, ${rgb.green}, ${rgb.blue}, ${on ? 1 : 0.9})`}
             strokeWidth={on ? 1 : 0.056}
-            filter={on ? "url(#blurred_border)" : ""}
+            filter="url(#blurred_border)"
             onClick={() => clickHandler()}
         />
     )

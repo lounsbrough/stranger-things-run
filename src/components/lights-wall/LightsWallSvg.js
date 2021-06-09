@@ -31,7 +31,7 @@ const LightsWallSvg = (props) =>
                 key={lightBulbConfig.letter}
                 coordinates={lightBulbConfig.pathCoordinates}
                 hexColor={lightBulbConfig.hexColor}
-                on={['r', 'u', 'n'].includes(lightBulbConfig.letter)}
+                on={Math.random() > 0.5}
                 clickHandler={() => alert('Time to do some stuff!')}
             />
         )}
