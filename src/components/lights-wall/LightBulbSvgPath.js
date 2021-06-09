@@ -10,7 +10,7 @@ const hexToRgb = (hex) => {
     } : null
 };
 
-const LightBulbSvgPath = ({coordinates, hexColor, on}) => {
+const LightBulbSvgPath = ({coordinates, hexColor, on, clickHandler}) => {
     const rgb = hexToRgb(hexColor);
 
     return (
@@ -20,6 +20,7 @@ const LightBulbSvgPath = ({coordinates, hexColor, on}) => {
             stroke={`rgba(${rgb.red}, ${rgb.green}, ${rgb.blue}, ${on ? 1 : 0.7})`}
             strokeWidth={on ? 1 : 0.056}
             filter={on ? "url(#blurred_border)" : ""}
+            onClick={() => clickHandler()}
         />
     )
 };
