@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const cors = require('cors');
 const http = require('http');
 const server = http.createServer(app);
 const {Server} = require('socket.io');
@@ -20,8 +21,6 @@ const io = new Server(server, {
         methods: ["GET", "POST", "OPTIONS"]
     }
 });
-
-io.set('origins', 'codenough.com:* lounsbrough.com:*');
 
 const letterStates = 'abcdefghijklmnopqrstuvwxyz'.split('').map((letter) => ({
     letter,
