@@ -32,10 +32,16 @@ const getInitialLetterStates = () => 'abcdefghijklmnopqrstuvwxyz'.split('').map(
 io.on('connection', (socket) => {
     console.log('client connected');
 
-    socket.on('join-room', (roomId) => {
+    socket.on('join-room', (roomId, callback) => {
         console.log(`joined room ${roomId}`);
 
         socket.join(roomId);
+
+        if (!roomLetterStates[roomId]) {
+            roomLetterStates[roomId] = getInitialLetterStates();
+        }
+
+        callback(roomLetterStates[roomId]);
     });
 
     socket.on('light-state-change', (letterStateChange) => {
