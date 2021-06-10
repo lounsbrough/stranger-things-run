@@ -22,7 +22,9 @@ const io = new Server(server, {
     }
 });
 
-const letterStates = 'abcdefghijklmnopqrstuvwxyz'.split('').map((letter) => ({
+const roomLetterStates = {};
+
+const getInitialLetterStates = () => 'abcdefghijklmnopqrstuvwxyz'.split('').map((letter) => ({
     letter,
     on: false
 }));
@@ -39,12 +41,16 @@ io.on('connection', (socket) => {
     socket.on('light-state-change', (letterStateChange) => {
         console.log(letterStateChange);
 
-        letterStates.find((letterState) => letterState.letter === letterStateChange.letter).on = letterStateChange.on;
-
         console.log(socket.rooms);
 
         socket.rooms.forEach(roomId => {
-            socket.to(roomId).emit('letter-state-change', letterStates);
+            if (!roomLetterStates[roomId]) {
+                roomLetterStates[roomId] = getInitialLetterStates();
+            }
+
+            roomLetterStates[roomId].find((letterState) => letterState.letter === letterStateChange.letter).on = letterStateChange.on;
+
+            socket.to(roomId).emit('letter-state-change', roomLetterStates[roomId]);
         });
     });
 });
