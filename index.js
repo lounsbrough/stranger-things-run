@@ -6,6 +6,8 @@ const {Server} = require('socket.io');
 
 const port = 7241;
 
+app.options('*', cors());
+
 const io = new Server(server, {
     cors: {
         origin: [
@@ -18,6 +20,8 @@ const io = new Server(server, {
         methods: ["GET", "POST", "OPTIONS"]
     }
 });
+
+io.set('origins', 'codenough.com:* lounsbrough.com:*');
 
 const letterStates = 'abcdefghijklmnopqrstuvwxyz'.split('').map((letter) => ({
     letter,
