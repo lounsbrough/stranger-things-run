@@ -12,7 +12,8 @@ const io = new Server(server, {
             "http://localhost:3000",
             "https://codenough.com",
             "https://lounsbrough.com"
-        ]
+        ],
+        credentials: true
     }
 });
 
