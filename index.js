@@ -33,15 +33,17 @@ io.on('connection', (socket) => {
     console.log('client connected');
 
     socket.on('join-room', (roomId, callback) => {
-        console.log(`joined room ${roomId}`);
+        const uppercaseRoomId = roomId.toUpperCase();
 
-        socket.join(roomId);
+        console.log(`joined room ${uppercaseRoomId}`);
 
-        if (!roomLetterStates[roomId]) {
-            roomLetterStates[roomId] = getInitialLetterStates();
+        socket.join(uppercaseRoomId);
+
+        if (!roomLetterStates[uppercaseRoomId]) {
+            roomLetterStates[uppercaseRoomId] = getInitialLetterStates();
         }
 
-        callback(roomLetterStates[roomId]);
+        callback(roomLetterStates[uppercaseRoomId]);
     });
 
     socket.on('light-state-change', (letterStateChange) => {
