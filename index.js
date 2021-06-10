@@ -15,7 +15,7 @@ const io = new Server(server, {
             "https://lounsbrough.com"
         ],
         credentials: true,
-        methods: ["GET", "POST"]
+        methods: ["GET", "POST", "OPTIONS"]
     }
 });
 
