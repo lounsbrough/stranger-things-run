@@ -37,7 +37,7 @@ io.on('connection', (socket) => {
         callback(roomLetterStates[uppercaseRoomId]);
     });
 
-    socket.on('light-state-change', (letterStateChange) => {
+    socket.on('letter-state-change', (letterStateChange) => {
         console.log(letterStateChange);
 
         socket.rooms.forEach(roomId => {
