@@ -58,7 +58,7 @@ const setupLetterStateChangeMessageHandler = (socket) => {
 };
 
 io.on('connection', (socket) => {
-    setupJoinRoomHandler(socket);
+    setupJoinRoomMessageHandler(socket);
     setupLetterStateChangeMessageHandler(socket);
 });
 
