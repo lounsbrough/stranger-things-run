@@ -24,11 +24,8 @@ const getInitialLetterStates = () => 'abcdefghijklmnopqrstuvwxyz'.split('').map(
     on: false
 }));
 
-const joinRoomMessageId = 'join-room';
-const lightStateChangeMessageId = 'light-state-change';
-
 io.on('connection', (socket) => {
-    socket.on(joinRoomMessageId, (roomId, callback) => {
+    socket.on('join-room', (roomId, callback) => {
         const uppercaseRoomId = roomId.toUpperCase();
 
         socket.join(uppercaseRoomId);
@@ -39,8 +36,8 @@ io.on('connection', (socket) => {
 
         callback(roomLetterStates[uppercaseRoomId]);
     });
-    
-    socket.on(lightStateChangeMessageId, (letterStateChange) => {
+
+    socket.on('light-state-change', (letterStateChange) => {
         console.log(letterStateChange);
 
         socket.rooms.forEach(roomId => {
@@ -50,7 +47,7 @@ io.on('connection', (socket) => {
 
             roomLetterStates[roomId].find((letterState) => letterState.letter === letterStateChange.letter).on = letterStateChange.on;
 
-            socket.to(roomId).emit(lightStateChangeMessageId, roomLetterStates[roomId]);
+            socket.to(roomId).emit('light-state-change', roomLetterStates[roomId]);
         });
     });
 });
