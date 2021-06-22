@@ -7,8 +7,6 @@ const {Server} = require('socket.io');
 
 const port = 7241;
 
-app.options('*', cors());
-
 const io = new Server(server, {
     cors: {
         origin: [
