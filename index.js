@@ -11,8 +11,7 @@ const io = new Server(server, {
     cors: {
         origin: [
             "https://codenough.com"
-        ],
-        methods: ["GET", "POST", "OPTIONS"]
+        ]
     }
 });
 
