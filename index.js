@@ -12,7 +12,10 @@ app.options('*', cors());
 const io = new Server(server, {
     cors: {
         origin: [
-            "https://codenough.com"
+            "http://localhost:3000",
+            "http://localhost:7241",
+            "https://codenough.com",
+            "https://lounsbrough.com"
         ],
         credentials: true,
         methods: ["GET", "POST", "OPTIONS"]
