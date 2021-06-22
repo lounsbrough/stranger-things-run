@@ -22,13 +22,12 @@ const getInitialLetterStates = () => 'abcdefghijklmnopqrstuvwxyz'.split('').map(
     on: false
 }));
 
-io.on('connection', (socket) => {
-    console.log('client connected');
+const joinRoomMessageId = 'join-room';
+const lightStateChangeMessageId = 'light-state-change';
 
-    socket.on('join-room', (roomId, callback) => {
+const setupJoinRoomMessageHandler = (socket) => {
+    socket.on(joinRoomMessageId, (roomId, callback) => {
         const uppercaseRoomId = roomId.toUpperCase();
-
-        console.log(`joined room ${uppercaseRoomId}`);
 
         socket.join(uppercaseRoomId);
 
@@ -38,11 +37,11 @@ io.on('connection', (socket) => {
 
         callback(roomLetterStates[uppercaseRoomId]);
     });
+};
 
-    socket.on('light-state-change', (letterStateChange) => {
+const setupLightStateChangeMessageHandler = (socket) => {
+    socket.on(lightStateChangeMessageId, (letterStateChange) => {
         console.log(letterStateChange);
-
-        console.log(socket.rooms);
 
         socket.rooms.forEach(roomId => {
             if (!roomLetterStates[roomId]) {
@@ -51,9 +50,14 @@ io.on('connection', (socket) => {
 
             roomLetterStates[roomId].find((letterState) => letterState.letter === letterStateChange.letter).on = letterStateChange.on;
 
-            socket.to(roomId).emit('letter-state-change', roomLetterStates[roomId]);
+            socket.to(roomId).emit(lightStateChangeMessageId, roomLetterStates[roomId]);
         });
     });
+};
+
+io.on('connection', (socket) => {
+    setupJoinRoomMessageHandler(socket);
+    setupLightStateChangeMessageHandler(socket);
 });
 
 server.listen(port, () => {
