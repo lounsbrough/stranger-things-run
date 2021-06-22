@@ -47,7 +47,7 @@ io.on('connection', (socket) => {
 
             roomLetterStates[roomId].find((letterState) => letterState.letter === letterStateChange.letter).on = letterStateChange.on;
 
-            socket.to(roomId).emit('light-state-change', roomLetterStates[roomId]);
+            socket.to(roomId).emit('letter-state-change', roomLetterStates[roomId]);
         });
     });
 });
