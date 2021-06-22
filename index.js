@@ -15,7 +15,7 @@ const io = new Server(server, {
     }
 });
 
-const roomLetterStates = {};
+var roomLetterStates = {};
 
 const getInitialLetterStates = () => 'abcdefghijklmnopqrstuvwxyz'.split('').map((letter) => ({
     letter,
