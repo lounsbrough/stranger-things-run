@@ -10,12 +10,8 @@ const port = 7241;
 const io = new Server(server, {
     cors: {
         origin: [
-            "http://localhost:3000",
-            "http://localhost:7241",
-            "https://codenough.com",
-            "https://lounsbrough.com"
+            "https://codenough.com"
         ],
-        credentials: true,
         methods: ["GET", "POST", "OPTIONS"]
     }
 });
