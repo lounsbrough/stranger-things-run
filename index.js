@@ -6,19 +6,19 @@ const {Server} = require('socket.io');
 
 const port = 7241;
 
-const allowedCorsOrigins = [
-    "https://codenough.com"
-];
+const corsConfig = {
+    origin: [
+        'https://codenough.com'
+    ]
+};
 
 if (process.env.LOCAL_RUN) {
-    console.log('Local run, allowing localhost as CORS origin');
-    allowedCorsOrigins.push("http://localhost:3000");
+    console.log('Local run, allowing all CORS origins');
+    corsConfig.origin = '*';
 }
 
 const io = new Server(server, {
-    cors: {
-        origin: allowedCorsOrigins
-    }
+    cors: corsConfig
 });
 
 const roomLetterStates = {};
