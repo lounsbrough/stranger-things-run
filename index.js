@@ -1,17 +1,23 @@
 const express = require('express');
 const app = express();
-const cors = require('cors');
 const http = require('http');
 const server = http.createServer(app);
 const {Server} = require('socket.io');
 
 const port = 7241;
 
+const allowedCorsOrigins = [
+    "https://codenough.com"
+];
+
+if (process.env.LOCAL_RUN) {
+    console.log('Local run, allowing localhost as CORS origin');
+    allowedCorsOrigins.push("http://localhost:3000");
+}
+
 const io = new Server(server, {
     cors: {
-        origin: [
-            "https://codenough.com"
-        ]
+        origin: allowedCorsOrigins
     }
 });
 

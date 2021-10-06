@@ -6,11 +6,11 @@
   "author": "david.lounsbrough@gmail.com",
   "license": "MIT",
   "dependencies": {
-    "cors": "^2.8.5",
     "express": "^4.17.1",
     "socket.io": "^4.1.2"
   },
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "dev": "LOCAL_RUN=true node index.js"
   }
 }
