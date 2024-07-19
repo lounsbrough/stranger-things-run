@@ -1,8 +1,8 @@
 {
-  "name": "stranger-things-run",
+  "name": "dot-chaser-socket-server",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "git@github.com:lounsbrough/stranger-things-run.git",
+  "repository": "git@github.com:lounsbrough/dot-chaser-socket-server.git",
   "author": "david.lounsbrough@gmail.com",
   "license": "MIT",
   "dependencies": {
