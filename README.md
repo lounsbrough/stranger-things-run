@@ -1,5 +1,5 @@
-# dot-chaser-socket-server
+# stranger-things-run
 
-This is the socket server for my dot chaser game.
+This is a demo application, showing a simple use case for websockets.
 
 Start the server with `yarn dev`.
